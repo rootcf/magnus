@@ -8,7 +8,7 @@ interface = devices.Activate(
 volume = cast(interface, POINTER(IAudioEndpointVolume))
  
 
-out = {
+exec = {
   "sesi kıs": {
     "exec": lambda : (volume.SetMasterVolumeLevel(-10.0, None))  
   },
