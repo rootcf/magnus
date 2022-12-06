@@ -19,8 +19,8 @@ for dosya in os.listdir("commands"):
     komutlar.update(modul.out)
 
 def callback(recognizer, audio):
+   r.adjust_for_ambient_noise(mic)
     try:
-        r.adjust_for_ambient_noise(mic)
         yazi = r.recognize_google(audio, language='tr-tr')
         yazi = yazi.lower()
         command = " ".join(yazi.split()[1:]).lower()
