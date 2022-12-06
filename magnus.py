@@ -16,7 +16,7 @@ for dosya in os.listdir("commands"):
     # Dosyayı içe aktarın
     modul = importlib.import_module(dosya[:-3])
     # Dosyadaki verileri bir sözlük içine toplayın
-    komutlar.update(modul.out)
+    komutlar.update(modul.exec)
 
 def callback(recognizer, audio):
    r.adjust_for_ambient_noise(mic)
