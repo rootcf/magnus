@@ -10,15 +10,15 @@ volume = cast(interface, POINTER(IAudioEndpointVolume))
 
 exec = {
   "sesi kıs": {
-    "exec": lambda : (volume.SetMasterVolumeLevel(-10.0, None))  
+    "exec": lambda query : (volume.SetMasterVolumeLevel(-10.0, None))  
   },
    "sesi kız": {
-    "exec": lambda : (volume.SetMasterVolumeLevel(-10.0, None)) 
+    "exec": lambda query : (volume.SetMasterVolumeLevel(-10.0, None)) 
   },
-  "sesi kapat": {
-    "exec": lambda : (volume.SetMasterVolumeLevel(-35.0, None))  
+  "ses aç": {
+    "exec": lambda query : (volume.SetMasterVolumeLevel(-35.0, None))  
   },
-   "sesi aç": {
-    "exec": lambda : volume.SetMasterVolumeLevel(0.0, None)  
+   "ses kapat": {
+    "exec": lambda query : volume.SetMasterVolumeLevel(0.0, None)  
   }
 }
