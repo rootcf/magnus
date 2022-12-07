@@ -7,6 +7,8 @@ import sys
 sys.path.append("./commands")
 mic = sr.Microphone() 
 r = sr.Recognizer()
+#r.pause_threshold = 0.5
+#r.energy_threshold = 50
 komutlar = {}
 
 for dosya in os.listdir("commands"):
@@ -16,6 +18,7 @@ for dosya in os.listdir("commands"):
     modul = importlib.import_module(dosya[:-3])
     # Dosyadaki verileri bir sözlük içine toplayın
     komutlar.update(modul.exec)
+    print("Yüklenen komut : "+dosya)
 
 def callback(recognizer, audio):
     r.adjust_for_ambient_noise(mic)
@@ -23,7 +26,9 @@ def callback(recognizer, audio):
         yazi = r.recognize_google(audio, language="tr-tr")
         yazi = yazi.lower()
         command = " ".join(yazi.split()[1:]).lower()
-        
+        if not command.split()[1:]:
+            return
+
         if yazi.split()[0] == "magnus" or "magnoz" or "magnos": 
           if command in komutlar:
               komutlar[command]["exec"](command.split()[1:])      
@@ -35,10 +40,11 @@ def callback(recognizer, audio):
         print("Dinleme zaman aşımına uğradı")
 
     except sr.UnknownValueError:
-        print("Ne dediğini anlayamadım")
+        print(" ")
 
     except sr.RequestError:
         print("İnternete bağlanamıyorum")
 
 r.listen_in_background(mic, callback)
+print("Hazır!")
 while True: time.sleep(0.1)
