@@ -1,7 +1,7 @@
 
 exec = {
   "merhaba": {
-    "exec": lambda : print("Merhaba! Ben Magnus.")  # Örnek bir işlem
+    "exec": lambda query: print("Merhaba! Ben Magnus.")  # Örnek bir işlem
   }
   
 }
